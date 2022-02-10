@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// ホーム画面の表示
+Route::get('/', 'HomeController@showHome')->name('show.home');
+// Taskの追加
+Route::post('/add', 'TaskController@add')->name('add');
