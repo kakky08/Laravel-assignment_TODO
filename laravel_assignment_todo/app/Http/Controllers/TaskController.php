@@ -41,7 +41,7 @@ class TaskController extends Controller
             'comment' => $request->task,
         ]);
 
-        return redirect()->route('index');
+        return redirect()->route('task.index');
     }
 
     /**
@@ -86,6 +86,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::find($id)->delete();
+        return redirect()->route('task.index');
     }
 }

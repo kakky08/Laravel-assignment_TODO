@@ -11,7 +11,4 @@
 |
 */
 
-// ホーム画面の表示
-Route::resource('/', 'TaskController');
-// Taskの追加
-Route::resource('/', 'TaskController');
+Route::resource('task', 'TaskController', ['only' => ['index', 'store', 'destroy']]);
