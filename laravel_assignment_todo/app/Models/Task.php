@@ -8,6 +8,6 @@ class Task extends Model
 {
     protected $fillable = [
         'comment',
-        'state',
+        'state_id',
     ];
 }

@@ -12,6 +12,6 @@
 */
 
 // ホーム画面の表示
-Route::get('/', 'HomeController@showHome')->name('show.home');
+Route::resource('/', 'TaskController');
 // Taskの追加
-Route::post('/add', 'TaskController@add')->name('add');
+Route::resource('/', 'TaskController');
