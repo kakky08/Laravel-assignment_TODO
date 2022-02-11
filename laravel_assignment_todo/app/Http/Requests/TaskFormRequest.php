@@ -24,7 +24,7 @@ class TaskFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => 'required|max:255',
+            'task' => 'required|max:255',
         ];
     }
 }
