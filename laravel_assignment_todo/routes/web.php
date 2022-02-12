@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::resource('/', 'TaskController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
