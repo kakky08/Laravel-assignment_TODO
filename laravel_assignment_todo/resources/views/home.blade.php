@@ -32,9 +32,7 @@
             <th scope="row">{{ $key }}</th>
             <td>{{ $task->comment }}</td>
             <td class="row">
-                <form method="POST" action="{{ route('tasks.update', $task->id) }}">
-                    @method('PUT')
-                    @csrf
+                <form method="POST" action="{{-- {{ route('tasks.update', $task->id) }} --}}">
                     <button type="submit" class="btn btn-secondary margin-right">{{ $task->is_state ? '完了' : '作業中' }}</button>
                 </form>
                 <form method="POST" action="{{ route('tasks.destroy', $task->id) }}">
