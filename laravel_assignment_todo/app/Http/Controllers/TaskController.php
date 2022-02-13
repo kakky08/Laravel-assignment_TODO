@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('updated_at', 'asc')->get();
+        $tasks = Task::orderBy('created_at', 'asc')->get();
 
         return view('home', compact('tasks'));
     }
@@ -33,7 +33,7 @@ class TaskController extends Controller
             'comment' => $request->task,
         ]);
 
-        return redirect()->route('task.index');
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -57,7 +57,17 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $task = Task::find($id);
+        if ($task->is_state === 0)
+        {
+            $task->is_state = 1;
+        }
+        else
+        {
+            $task->is_state = 0;
+        }
+        $task->update();
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -69,6 +79,6 @@ class TaskController extends Controller
     public function destroy($id)
     {
         Task::find($id)->delete();
-        return redirect()->route('task.index');
+        return redirect()->route('tasks.index');
     }
 }
