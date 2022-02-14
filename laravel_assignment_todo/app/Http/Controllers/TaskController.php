@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderBy('updated_at', 'asc')->get();
+        $tasks = Task::orderBy('created_at', 'asc')->get();
 
         return view('home', compact('tasks'));
     }
@@ -33,7 +33,7 @@ class TaskController extends Controller
             'comment' => $request->task,
         ]);
 
-        return redirect()->route('index');
+        return redirect()->route('tasks.index');
     }
 
     /**
@@ -57,7 +57,6 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -68,6 +67,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::find($id)->delete();
+        return redirect()->route('tasks.index');
     }
 }

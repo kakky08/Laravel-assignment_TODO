@@ -32,11 +32,12 @@
             <th scope="row">{{ $key }}</th>
             <td>{{ $task->comment }}</td>
             <td class="row">
-                <form method="POST" action="{{-- {{ rotue('state.update') }} --}}">
-                    {{-- TODO 状態に応じて表示内容の変更 --}}
+                <form method="POST" action="{{-- {{ route('tasks.update', $task->id) }} --}}">
                     <button type="submit" class="btn btn-secondary margin-right">{{ $task->is_state ? '完了' : '作業中' }}</button>
                 </form>
-                <form method="POST" action="{{-- {{ route('delete') }} --}}">
+                <form method="POST" action="{{ route('tasks.destroy', $task->id) }}">
+                    @method('DELETE')
+                    @csrf
                     <button type="submit" class="btn btn-secondary">削除</button>
                 </form>
             </td>
@@ -46,7 +47,7 @@
     </tbody>
 </table>
 <h2>新規タスクの追加</h2>
-<form method="POST" action="{{ route('store') }}" class="form-inline">
+<form method="POST" action="{{ route('tasks.store') }}" class="form-inline">
     @csrf
     <div class="form-group">
         <input type="text" name="task" class="form-control margin-right">
