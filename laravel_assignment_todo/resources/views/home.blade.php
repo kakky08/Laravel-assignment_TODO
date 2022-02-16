@@ -57,7 +57,7 @@
     <button type="submit" class="btn btn-secondary form-btn">追加</button>
 </form>
 <script>
-  const formSwitch = () =>
+const formSwitch = () =>
 {
     return document.getElementById('select-form').submit();
 }
