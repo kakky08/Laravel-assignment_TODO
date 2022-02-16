@@ -2,18 +2,18 @@
 
 @section('content')
 <h1>ToDoリスト</h1>
-<form method="POST" action="{{-- {{ route('select') }} --}}">
+<form method="POST" id="select-form" action="{{ route('tasks.select')}}">
     @csrf
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="category" id="category1" value="1">
+        <input class="form-check-input post" type="radio" name="category" id="category1" value="2" onclick="formSwitch()">
         <label class="form-check-label" for="category1">すべて</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="category" id="category2" value="2">
+        <input class="form-check-input" type="radio" name="category" id="category2"  onclick="formSwitch()" value="0">
         <label class="form-check-label" for="category2">作業中</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="category" id="category3" value="3">
+        <input class="form-check-input" type="radio" name="category" id="category3"  onclick="formSwitch()" value="1">
         <label class="form-check-label" for="category3">完了</label>
     </div>
 </form>
@@ -56,4 +56,10 @@
     </div>
     <button type="submit" class="btn btn-secondary form-btn">追加</button>
 </form>
+<script>
+  const formSwitch = () =>
+{
+    return document.getElementById('select-form').submit();
+}
+</script>
 @endsection

@@ -36,16 +36,7 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
 
     /**
@@ -81,5 +72,25 @@ class TaskController extends Controller
     {
         Task::find($id)->delete();
         return redirect()->route('tasks.index');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request; $request
+     * @return \Illuminate\Http\Response
+     */
+    public function select(Request $request)
+    {
+        if ($request->category === '0' || $request->category === '1')
+        {
+            $tasks = Task::where('is_state', $request->category)->orderBy('created_at', 'asc')->get();
+        }
+        else
+        {
+            $tasks = Task::orderBy('created_at', 'asc')->get();
+        }
+
+        return view('home', compact('tasks'));
     }
 }
