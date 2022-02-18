@@ -10,12 +10,26 @@ class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request; $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $select = $request->select;
+
         $tasks = Task::orderBy('created_at', 'asc')->get();
+        $tasks = Task::when($select, function ($query, $select)
+        {
+            if ($select == '0')
+            {
+                return $query->where('is_state', 0);
+            }
+            elseif($select === '1')
+            {
+                return $query->where('is_state', $select);
+            }
+        })
+        ->orderBy('created_at', 'asc')->get();
 
         return view('home', compact('tasks'));
     }
@@ -74,23 +88,4 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Illuminate\Http\Request; $request
-     * @return \Illuminate\Http\Response
-     */
-    public function select(Request $request)
-    {
-        if ($request->category === '0' || $request->category === '1')
-        {
-            $tasks = Task::where('is_state', $request->category)->orderBy('created_at', 'asc')->get();
-        }
-        else
-        {
-            $tasks = Task::orderBy('created_at', 'asc')->get();
-        }
-
-        return view('home', compact('tasks'));
-    }
 }

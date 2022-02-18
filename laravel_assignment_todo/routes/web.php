@@ -13,4 +13,3 @@
 
 
 Route::resource('tasks', 'TaskController', ['only' => ['index', 'store', 'update', 'destroy']]);
-Route::post('/tasks/select', 'TaskController@select')->name('tasks.select');
