@@ -4,7 +4,7 @@
 <h1>ToDoリスト</h1>
 <form method="GET" id="select-form" action="/tasks">
     <div class="form-check form-check-inline">
-        <input class="form-check-input post" type="radio" name="select" id="select1" value="すべて" onclick="formSwitch()">
+        <input class="form-check-input" type="radio" name="select" id="select1" value="すべて" onclick="formSwitch()">
         <label class="form-check-label" for="select1">すべて</label>
     </div>
     <div class="form-check form-check-inline">
