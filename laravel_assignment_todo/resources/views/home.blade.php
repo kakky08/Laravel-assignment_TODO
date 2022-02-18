@@ -56,13 +56,9 @@
     <button type="submit" class="btn btn-secondary form-btn">追加</button>
 </form>
 <script>
-<<<<<<< HEAD
-const formSwitch = () =>
-=======
     const formSwitch = () =>
->>>>>>> feat/assignment3-4
-{
-    return document.getElementById('select-form').submit();
-}
+        {
+            return document.getElementById('select-form').submit();
+        }
 </script>
 @endsection

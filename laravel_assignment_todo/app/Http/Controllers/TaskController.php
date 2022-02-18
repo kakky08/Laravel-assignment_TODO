@@ -17,10 +17,9 @@ class TaskController extends Controller
     {
         $select = $request->select;
 
-        $tasks = Task::orderBy('created_at', 'asc')->get();
         $tasks = Task::when($select, function ($query, $select)
         {
-            if ($select == '0')
+            if ($select === '0')
             {
                 return $query->where('is_state', 0);
             }
