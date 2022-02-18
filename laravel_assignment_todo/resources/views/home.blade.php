@@ -2,19 +2,18 @@
 
 @section('content')
 <h1>ToDoリスト</h1>
-<form method="POST" id="select-form" action="{{ route('tasks.select')}}">
-    @csrf
+<form method="GET" id="select-form" action="/tasks">
     <div class="form-check form-check-inline">
-        <input class="form-check-input post" type="radio" name="category" id="category1" value="2" onclick="formSwitch()">
-        <label class="form-check-label" for="category1">すべて</label>
+        <input class="form-check-input post" type="radio" name="select" id="select1" value="2" onclick="formSwitch()">
+        <label class="form-check-label" for="select1">すべて</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="category" id="category2"  onclick="formSwitch()" value="0">
-        <label class="form-check-label" for="category2">作業中</label>
+        <input class="form-check-input" type="radio" name="select" id="select2"  onclick="formSwitch()" value="0">
+        <label class="form-check-label" for="select2">作業中</label>
     </div>
     <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="category" id="category3"  onclick="formSwitch()" value="1">
-        <label class="form-check-label" for="category3">完了</label>
+        <input class="form-check-input" type="radio" name="select" id="select3"  onclick="formSwitch()" value="1">
+        <label class="form-check-label" for="select3">完了</label>
     </div>
 </form>
 <table class="table table-borderless">
@@ -57,7 +56,7 @@
     <button type="submit" class="btn btn-secondary form-btn">追加</button>
 </form>
 <script>
-  const formSwitch = () =>
+    const formSwitch = () =>
 {
     return document.getElementById('select-form').submit();
 }
