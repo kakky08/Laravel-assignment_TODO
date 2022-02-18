@@ -16,7 +16,6 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $select = $request->select;
-
         $tasks = Task::when($select, function ($query, $select)
         {
             if ($select === '0')
