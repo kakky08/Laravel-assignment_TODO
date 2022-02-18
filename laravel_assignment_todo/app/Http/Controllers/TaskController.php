@@ -16,17 +16,15 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         $select = $request->select;
-
-        $tasks = Task::orderBy('created_at', 'asc')->get();
         $tasks = Task::when($select, function ($query, $select)
         {
-            if ($select == '0')
+            if ($select === '作業中')
             {
                 return $query->where('is_state', 0);
             }
-            elseif($select === '1')
+            elseif($select === '完了')
             {
-                return $query->where('is_state', $select);
+                return $query->where('is_state', 1);
             }
         })
         ->orderBy('created_at', 'asc')->get();
