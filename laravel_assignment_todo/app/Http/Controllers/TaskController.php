@@ -10,12 +10,25 @@ class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request; $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::orderBy('created_at', 'asc')->get();
+        $select = $request->select;
+        $tasks = Task::when($select, function ($query, $select)
+        {
+
+            if ($select === '作業中')
+            {
+                return $query->where('is_state', 0);
+            }
+            elseif($select === '完了')
+            {
+                return $query->where('is_state', 1);
+            }
+        })
+        ->orderBy('created_at', 'asc')->get();
 
         return view('home', compact('tasks'));
     }
@@ -36,16 +49,7 @@ class TaskController extends Controller
         return redirect()->route('tasks.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+
 
 
     /**
@@ -82,4 +86,5 @@ class TaskController extends Controller
         Task::find($id)->delete();
         return redirect()->route('tasks.index');
     }
+
 }
